@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+
+import { RouterProvider } from 'react-router-dom'
+
+import AuthProvider from './hoc/AuthProvider'
+import router from './router'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <AuthProvider>
+      <RouterProvider router={router} />
+      {/* OLD APPROUCH */}
+      {/* <Routes>
+        <Route path="/" element={<Layout />}>
+          {routes
+            .filter(({ path }) => !path.includes('about'))
+            .map(({ index = false, path, component: Component }) => (
+              <Route
+                key={path}
+                index={index}
+                path={path}
+                element={<Component />}
+              />
+            ))}
+          <Route path="about/" element={<AboutPage />}>
+            <Route path="contacts" element={<p>Our Contacts</p>} />
+            <Route path="team" element={<p>Our Team</p>} />
+          </Route>
+        </Route>
+      </Routes> */}
+    </AuthProvider>
+  )
 }
 
-export default App;
+export default App
